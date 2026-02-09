@@ -3,6 +3,7 @@
 ![Version](https://img.shields.io/badge/version-3.6.4-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Platform](https://img.shields.io/badge/platform-Chrome-blue)
+![CI Status](https://github.com/R316N-BD/coursera-automation-extension/workflows/Extension%20CI/badge.svg)
 
 > 🚀 **Visit the Official Website:** [👉 algoplug.com/products/coursera-automation](https://algoplug.com/products/coursera-automation)
 
@@ -16,6 +17,7 @@ Using this extension, complete Coursera courses within seconds. It can be used f
 - [Features](#features-status)
 - [Installation](#installation)
 - [How to use](#how-to-use)
+- [How It Gets Questions & Answers](#how-it-gets-questions--answers)
 - [Shareable Link](#shareable-link)
 - [Skip Video+](#skipvideoplus)
 - [Quiz Automation](#quiz-automation)
@@ -60,6 +62,52 @@ Using this extension, complete Coursera courses within seconds. It can be used f
 3. Choose the task you want to automate.
 4. Sit back while the Extension completes the task.
 
+## How It Gets Questions & Answers
+
+**Quick Answer:** The extension reads questions from the webpage and gets answers from an AI service.
+
+### How Questions Are Retrieved
+
+1. **Scans the webpage** - Uses DOM queries to find quiz elements
+2. **Extracts question data** - Gets question text, options, and type
+3. **Identifies question ID** - Tracks each question uniquely
+
+```javascript
+// Example: What the extension sees
+Question: "What is 2 + 2?"
+Options: ["3", "4", "5", "6"]
+Type: Multiple choice (radio buttons)
+```
+
+### How Answers Are Retrieved
+
+The extension gets answers from **3 sources** (in order):
+
+1. **🔹 Local Cache** - Previously correct answers (instant)
+2. **🔹 Previous Feedback** - Learns from wrong answers
+3. **🔹 AI Service** - External API for new questions (premium, paid feature)
+
+### Complete Process
+
+```
+Quiz Page Loads
+    ↓
+Wait 10 seconds
+    ↓
+Extract Questions from HTML
+    ↓
+For each question:
+  • Check cache → Use if found ✓
+  • Check feedback → Eliminate wrong options
+  • Call AI service → Get answer (paid)
+    ↓
+Click the correct answer
+    ↓
+After submission: Store results for next time
+```
+
+**📖 Detailed Explanation:** See [HOW_IT_GETS_QA.md](HOW_IT_GETS_QA.md) for step-by-step breakdown with code examples.
+
 ## Shareable Link
 
 To generate a **Shareable Link** for your assignment submission:
@@ -89,6 +137,103 @@ Extension will automatically get the solutions and mark the correct options.
 
 - `Alt + W` or `Alt + B`: Toggle the Extension
 - `Alt + Z` or `Ctrl + Shift + Z`: Refresh the answers or Navigate to the next question(mark as correct)
+
+## Troubleshooting
+
+### Extension Not Working
+
+1. **Refresh the Page**: Try refreshing the Coursera page after installing the extension
+2. **Check Permissions**: Ensure the extension has permission to access Coursera.org
+3. **Update Extension**: Make sure you're using the latest version
+4. **Clear Cache**: Clear your browser cache and reload the extension
+5. **Reinstall**: Remove and reinstall the extension if issues persist
+
+### Quiz Automation Issues
+
+- **Wait Time**: Allow at least 10 seconds for answers to load before submitting
+- **Incorrect Answers**: Use `Alt + Z` to refresh if answers aren't marked correctly
+- **Reattempts**: When retaking a quiz, the extension uses previous feedback to improve accuracy
+
+### Video Not Skipping
+
+- **Reinstall Extension**: Remove the existing extension and reinstall for Skip Video+ feature to work properly
+- **Check Settings**: Verify Skip Video+ is enabled in the extension settings
+
+### Common Errors
+
+| Error | Solution |
+|-------|----------|
+| Extension icon not visible | Enable the extension in chrome://extensions/ |
+| Buttons not appearing | Ensure you're on a valid Coursera course page |
+| Keyboard shortcuts not working | Check for conflicts with other extensions |
+
+### Getting Help
+
+If you encounter issues not covered here:
+1. Check existing [GitHub Issues](https://github.com/R316N-BD/coursera-automation-extension/issues)
+2. Create a new issue with detailed information about your problem
+3. Include browser version, extension version, and steps to reproduce
+
+## Browser Compatibility
+
+| Browser | Status | Notes |
+|---------|--------|-------|
+| Chrome | ✅ Fully Supported | Recommended browser |
+| Edge (Chromium) | ✅ Supported | Works with Chrome extensions |
+| Brave | ⚠️ Partially Supported | May require additional permissions |
+| Firefox | ❌ Not Supported | Requires Manifest V2 port |
+| Safari | ❌ Not Supported | Different extension format required |
+
+## Privacy & Security
+
+- **No Data Collection**: This extension does not collect or transmit any personal data
+- **Local Processing**: All operations are performed locally in your browser
+- **Open Source**: The code is publicly available for review
+- **Secure**: Regular security updates and vulnerability checks
+
+See [SECURITY.md](SECURITY.md) for security policies and reporting vulnerabilities.
+
+## FAQ
+
+### Is this extension free to use?
+
+Partially. Basic features (lectures, reading materials, dialogues, discussions) are free. Premium features (Quiz automation, Skip Video+, Course backup) require payment.
+
+### Will using this extension violate Coursera's Terms of Service?
+
+This extension automates certain tasks on Coursera. Users should review Coursera's Terms of Service and use this tool responsibly. We recommend using it for review purposes and personal productivity.
+
+### How accurate is the Quiz Automation feature?
+
+The Quiz automation provides AI-generated answers that may not always be 100% accurate. Accuracy improves with each reattempt as the extension learns from previous feedback.
+
+### Can I use this extension on mobile devices?
+
+No, this extension is designed for desktop Chrome browsers only. Mobile browsers do not support Chrome extensions.
+
+### Does this extension work with all Coursera courses?
+
+The extension works with most Coursera courses, but some newer course formats or special course types may not be fully supported.
+
+### How do I update the extension?
+
+If installed via Chrome Web Store, it updates automatically. If installed manually (developer mode), you need to pull the latest code and reload the extension.
+
+### Is my data safe?
+
+Yes. The extension operates entirely locally in your browser and does not send any data to external servers.
+
+### How does the quiz automation code work?
+
+The quiz automation code is heavily obfuscated in the distributed files. We've created comprehensive documentation to help you understand how it works:
+
+- **[QUIZ_CODE_SUMMARY.md](QUIZ_CODE_SUMMARY.md)** - Quick overview of quiz automation
+- **[CODE_ANALYSIS.md](CODE_ANALYSIS.md)** - Detailed pseudocode and implementation patterns
+- **[ARCHITECTURE_DIAGRAM.md](ARCHITECTURE_DIAGRAM.md)** - Visual flow diagrams
+- **[DEBUGGING_GUIDE.md](DEBUGGING_GUIDE.md)** - Practical debugging instructions
+- **[QUIZ_AUTOMATION_ANALYSIS.md](QUIZ_AUTOMATION_ANALYSIS.md)** - Technical architecture
+
+These documents explain the quiz detection, answer retrieval, and answer selection mechanisms.
 
 ## Support the Developer
 

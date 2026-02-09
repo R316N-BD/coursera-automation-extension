@@ -1,0 +1,133 @@
+name: Extension CI
+
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
+
+jobs:
+  lint-and-validate:
+    name: Lint and Validate
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Validate manifest.json
+        run: |
+          echo "Validating manifest.json..."
+          if ! jq empty manifest.json 2>/dev/null; then
+            echo "Error: manifest.json is not valid JSON"
+            exit 1
+          fi
+          echo "✓ manifest.json is valid JSON"
+          
+          # Check required fields
+          REQUIRED_FIELDS=("manifest_version" "name" "version" "description")
+          for field in "${REQUIRED_FIELDS[@]}"; do
+            if ! jq -e ".$field" manifest.json > /dev/null 2>&1; then
+              echo "Error: manifest.json is missing required field: $field"
+              exit 1
+            fi
+          done
+          echo "✓ All required fields present"
+      
+      - name: Check file structure
+        run: |
+          echo "Checking extension file structure..."
+          
+          # Check for required files
+          if [ ! -f "manifest.json" ]; then
+            echo "Error: manifest.json not found"
+            exit 1
+          fi
+          
+          if [ ! -f "README.md" ]; then
+            echo "Error: README.md not found"
+            exit 1
+          fi
+          
+          if [ ! -f "LICENSE" ]; then
+            echo "Error: LICENSE not found"
+            exit 1
+          fi
+          
+          # Check dist directory
+          if [ ! -d "dist" ]; then
+            echo "Error: dist directory not found"
+            exit 1
+          fi
+          
+          echo "✓ Required files present"
+      
+      - name: Validate HTML files
+        run: |
+          echo "Validating HTML files..."
+          for file in dist/*.html; do
+            if [ -f "$file" ]; then
+              # Basic HTML validation (check for DOCTYPE and html tags)
+              if ! grep -q "<!doctype html\|<!DOCTYPE html" "$file"; then
+                echo "Warning: $file missing DOCTYPE declaration"
+              fi
+              echo "✓ Checked $file"
+            fi
+          done
+      
+      - name: Check version consistency
+        run: |
+          echo "Checking version consistency..."
+          MANIFEST_VERSION=$(jq -r '.version' manifest.json)
+          README_VERSION=$(grep -oP 'version-\K[0-9]+\.[0-9]+\.[0-9]+' README.md | head -1)
+          
+          echo "Manifest version: $MANIFEST_VERSION"
+          echo "README version: $README_VERSION"
+          
+          if [ "$MANIFEST_VERSION" != "$README_VERSION" ]; then
+            echo "Warning: Version mismatch between manifest.json ($MANIFEST_VERSION) and README.md ($README_VERSION)"
+            # Don't fail the build, just warn
+          else
+            echo "✓ Versions match"
+          fi
+      
+      - name: Summary
+        run: |
+          echo "========================================="
+          echo "Extension CI completed successfully! ✅"
+          echo "========================================="
+
+  security-check:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+      contents: read
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Run security scan
+        run: |
+          echo "Running basic security checks..."
+          
+          # Check for common security issues in JavaScript files
+          echo "Checking for hardcoded secrets..."
+          if grep -r -i "password\s*=\|api_key\s*=\|secret\s*=" dist/ 2>/dev/null; then
+            echo "Warning: Potential hardcoded credentials found"
+          else
+            echo "✓ No obvious hardcoded credentials"
+          fi
+          
+          # Check for eval() usage
+          echo "Checking for unsafe eval() usage..."
+          if grep -r "eval(" dist/scripts/ 2>/dev/null; then
+            echo "Warning: eval() usage found (potential security risk)"
+          else
+            echo "✓ No eval() usage detected"
+          fi
+          
+          echo "Security scan completed"
