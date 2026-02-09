@@ -6,14 +6,28 @@ This repository contains comprehensive documentation about the quiz automation f
 
 ## 🎯 What You Asked For
 
-> "show me all the code in this that make it get question and click the right one"
+> "How does it get the questions and answers?"
 
-**Answer**: The actual code is heavily obfuscated in `dist/scripts/content.js`, but we've created extensive documentation to help you understand how it works.
+**Answer**: The extension reads questions from the webpage HTML and gets answers from an AI service. See [HOW_IT_GETS_QA.md](HOW_IT_GETS_QA.md) for a simple, focused explanation!
 
 ## 📖 Documentation Files
 
+### 0. **Simple Explanation** → [HOW_IT_GETS_QA.md](HOW_IT_GETS_QA.md) ⭐ NEW!
+**Start here if you just want to understand the Q&A mechanism!**
+
+**What's inside:**
+- ✅ How questions are extracted from the webpage
+- ✅ Where answers come from (cache, feedback, AI)
+- ✅ Step-by-step visual diagrams
+- ✅ Real code examples showing DOM extraction
+- ✅ All question types explained (radio, checkbox, text, dropdown)
+
+**Best for:** Anyone who wants a simple answer to "How does it get questions and answers?"
+
+---
+
 ### 1. **Quick Start** → [QUIZ_CODE_SUMMARY.md](QUIZ_CODE_SUMMARY.md)
-**Start here!** Complete overview in plain language.
+**Complete overview in plain language.**
 
 **What's inside:**
 - ✅ What the code does (step-by-step flow)
@@ -90,7 +104,10 @@ This repository contains comprehensive documentation about the quiz automation f
 
 ## 🚀 Quick Navigation
 
-### I want to understand how it works
+### I want to understand how it gets questions and answers
+→ Start with **[HOW_IT_GETS_QA.md](HOW_IT_GETS_QA.md)** ⭐ Simple & focused!
+
+### I want to understand how it works overall
 → Start with **[QUIZ_CODE_SUMMARY.md](QUIZ_CODE_SUMMARY.md)**
 
 ### I want to see visual diagrams
@@ -107,10 +124,14 @@ This repository contains comprehensive documentation about the quiz automation f
 
 ## 🎓 Learning Path
 
+**Just Want to Know How It Gets Q&A** (Quickest path):
+1. Read HOW_IT_GETS_QA.md (10 min) ✓ Done!
+
 **Beginner** (Never seen the extension before):
-1. Read QUIZ_CODE_SUMMARY.md (10 min)
-2. Look at ARCHITECTURE_DIAGRAM.md (5 min)
-3. Try DEBUGGING_GUIDE.md Method 1 (15 min)
+1. Read HOW_IT_GETS_QA.md (10 min)
+2. Read QUIZ_CODE_SUMMARY.md (10 min)
+3. Look at ARCHITECTURE_DIAGRAM.md (5 min)
+4. Try DEBUGGING_GUIDE.md Method 1 (15 min)
 
 **Intermediate** (Familiar with Chrome extensions):
 1. Read CODE_ANALYSIS.md (20 min)

@@ -17,6 +17,7 @@ Using this extension, complete Coursera courses within seconds. It can be used f
 - [Features](#features-status)
 - [Installation](#installation)
 - [How to use](#how-to-use)
+- [How It Gets Questions & Answers](#how-it-gets-questions--answers)
 - [Shareable Link](#shareable-link)
 - [Skip Video+](#skipvideoplus)
 - [Quiz Automation](#quiz-automation)
@@ -60,6 +61,52 @@ Using this extension, complete Coursera courses within seconds. It can be used f
 2. Click on the Extension icon.
 3. Choose the task you want to automate.
 4. Sit back while the Extension completes the task.
+
+## How It Gets Questions & Answers
+
+**Quick Answer:** The extension reads questions from the webpage and gets answers from an AI service.
+
+### How Questions Are Retrieved
+
+1. **Scans the webpage** - Uses DOM queries to find quiz elements
+2. **Extracts question data** - Gets question text, options, and type
+3. **Identifies question ID** - Tracks each question uniquely
+
+```javascript
+// Example: What the extension sees
+Question: "What is 2 + 2?"
+Options: ["3", "4", "5", "6"]
+Type: Multiple choice (radio buttons)
+```
+
+### How Answers Are Retrieved
+
+The extension gets answers from **3 sources** (in order):
+
+1. **🔹 Local Cache** - Previously correct answers (instant)
+2. **🔹 Previous Feedback** - Learns from wrong answers
+3. **🔹 AI Service** - External API for new questions (premium, paid feature)
+
+### Complete Process
+
+```
+Quiz Page Loads
+    ↓
+Wait 10 seconds
+    ↓
+Extract Questions from HTML
+    ↓
+For each question:
+  • Check cache → Use if found ✓
+  • Check feedback → Eliminate wrong options
+  • Call AI service → Get answer (paid)
+    ↓
+Click the correct answer
+    ↓
+After submission: Store results for next time
+```
+
+**📖 Detailed Explanation:** See [HOW_IT_GETS_QA.md](HOW_IT_GETS_QA.md) for step-by-step breakdown with code examples.
 
 ## Shareable Link
 
