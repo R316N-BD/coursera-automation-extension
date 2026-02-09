@@ -3,6 +3,7 @@
 ![Version](https://img.shields.io/badge/version-3.6.4-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Platform](https://img.shields.io/badge/platform-Chrome-blue)
+![CI Status](https://github.com/R316N-BD/coursera-automation-extension/workflows/Extension%20CI/badge.svg)
 
 > 🚀 **Visit the Official Website:** [👉 algoplug.com/products/coursera-automation](https://algoplug.com/products/coursera-automation)
 
@@ -89,6 +90,91 @@ Extension will automatically get the solutions and mark the correct options.
 
 - `Alt + W` or `Alt + B`: Toggle the Extension
 - `Alt + Z` or `Ctrl + Shift + Z`: Refresh the answers or Navigate to the next question(mark as correct)
+
+## Troubleshooting
+
+### Extension Not Working
+
+1. **Refresh the Page**: Try refreshing the Coursera page after installing the extension
+2. **Check Permissions**: Ensure the extension has permission to access Coursera.org
+3. **Update Extension**: Make sure you're using the latest version
+4. **Clear Cache**: Clear your browser cache and reload the extension
+5. **Reinstall**: Remove and reinstall the extension if issues persist
+
+### Quiz Automation Issues
+
+- **Wait Time**: Allow at least 10 seconds for answers to load before submitting
+- **Incorrect Answers**: Use `Alt + Z` to refresh if answers aren't marked correctly
+- **Reattempts**: When retaking a quiz, the extension uses previous feedback to improve accuracy
+
+### Video Not Skipping
+
+- **Reinstall Extension**: Remove the existing extension and reinstall for Skip Video+ feature to work properly
+- **Check Settings**: Verify Skip Video+ is enabled in the extension settings
+
+### Common Errors
+
+| Error | Solution |
+|-------|----------|
+| Extension icon not visible | Enable the extension in chrome://extensions/ |
+| Buttons not appearing | Ensure you're on a valid Coursera course page |
+| Keyboard shortcuts not working | Check for conflicts with other extensions |
+
+### Getting Help
+
+If you encounter issues not covered here:
+1. Check existing [GitHub Issues](https://github.com/R316N-BD/coursera-automation-extension/issues)
+2. Create a new issue with detailed information about your problem
+3. Include browser version, extension version, and steps to reproduce
+
+## Browser Compatibility
+
+| Browser | Status | Notes |
+|---------|--------|-------|
+| Chrome | ✅ Fully Supported | Recommended browser |
+| Edge (Chromium) | ✅ Supported | Works with Chrome extensions |
+| Brave | ⚠️ Partially Supported | May require additional permissions |
+| Firefox | ❌ Not Supported | Requires Manifest V2 port |
+| Safari | ❌ Not Supported | Different extension format required |
+
+## Privacy & Security
+
+- **No Data Collection**: This extension does not collect or transmit any personal data
+- **Local Processing**: All operations are performed locally in your browser
+- **Open Source**: The code is publicly available for review
+- **Secure**: Regular security updates and vulnerability checks
+
+See [SECURITY.md](SECURITY.md) for security policies and reporting vulnerabilities.
+
+## FAQ
+
+### Is this extension free to use?
+
+Partially. Basic features (lectures, reading materials, dialogues, discussions) are free. Premium features (Quiz automation, Skip Video+, Course backup) require payment.
+
+### Will using this extension violate Coursera's Terms of Service?
+
+This extension automates certain tasks on Coursera. Users should review Coursera's Terms of Service and use this tool responsibly. We recommend using it for review purposes and personal productivity.
+
+### How accurate is the Quiz Automation feature?
+
+The Quiz automation provides AI-generated answers that may not always be 100% accurate. Accuracy improves with each reattempt as the extension learns from previous feedback.
+
+### Can I use this extension on mobile devices?
+
+No, this extension is designed for desktop Chrome browsers only. Mobile browsers do not support Chrome extensions.
+
+### Does this extension work with all Coursera courses?
+
+The extension works with most Coursera courses, but some newer course formats or special course types may not be fully supported.
+
+### How do I update the extension?
+
+If installed via Chrome Web Store, it updates automatically. If installed manually (developer mode), you need to pull the latest code and reload the extension.
+
+### Is my data safe?
+
+Yes. The extension operates entirely locally in your browser and does not send any data to external servers.
 
 ## Support the Developer
 
