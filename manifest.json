@@ -4,7 +4,7 @@
   "version": "3.6.4",
   "author": "Saurav Hathi",
   "version_name": "Release Version",
-  "description": "Automate Coursera course completion: lectures, quizzes, reading materials, dialogues, and discussions. Features include AI-powered quiz automation, video skipping, and course backup. Free basic features with premium options.",
+  "description": "Automate Coursera: lectures, quizzes, reading materials, dialogues, and discussions. AI quiz automation, video skip, course backup.",
   "permissions": [
     "storage",
     "activeTab",
