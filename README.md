@@ -176,6 +176,18 @@ If installed via Chrome Web Store, it updates automatically. If installed manual
 
 Yes. The extension operates entirely locally in your browser and does not send any data to external servers.
 
+### How does the quiz automation code work?
+
+The quiz automation code is heavily obfuscated in the distributed files. We've created comprehensive documentation to help you understand how it works:
+
+- **[QUIZ_CODE_SUMMARY.md](QUIZ_CODE_SUMMARY.md)** - Quick overview of quiz automation
+- **[CODE_ANALYSIS.md](CODE_ANALYSIS.md)** - Detailed pseudocode and implementation patterns
+- **[ARCHITECTURE_DIAGRAM.md](ARCHITECTURE_DIAGRAM.md)** - Visual flow diagrams
+- **[DEBUGGING_GUIDE.md](DEBUGGING_GUIDE.md)** - Practical debugging instructions
+- **[QUIZ_AUTOMATION_ANALYSIS.md](QUIZ_AUTOMATION_ANALYSIS.md)** - Technical architecture
+
+These documents explain the quiz detection, answer retrieval, and answer selection mechanisms.
+
 ## Support the Developer
 
 If you find this extension helpful, consider supporting its development to keep it alive and growing! Every contribution makes a difference. ❤️
